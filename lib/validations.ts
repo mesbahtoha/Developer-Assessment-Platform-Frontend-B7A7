@@ -39,8 +39,18 @@ export const updateAccountSchema = z.object({
 export type UpdateAccountInput = z.infer<typeof updateAccountSchema>;
 
 export const candidateProfileSchema = z.object({
-  phone: z.string().max(30).optional().or(z.literal("")),
-  headline: z.string().max(120).optional().or(z.literal("")),
+  phone: z
+    .string()
+    .max(20)
+    .optional()
+    .or(z.literal(""))
+    .refine((v) => !v || v.trim().length >= 5, { message: "Phone must be at least 5 characters" }),
+  headline: z
+    .string()
+    .max(150)
+    .optional()
+    .or(z.literal(""))
+    .refine((v) => !v || v.trim().length >= 3, { message: "Headline must be at least 3 characters" }),
   bio: z.string().min(10, "Bio must be at least 10 characters").max(2000).optional().or(z.literal("")),
   skills: z.string().max(300).optional().or(z.literal("")),
   experienceYears: z.coerce.number().int().min(0).max(60).optional(),
@@ -51,10 +61,15 @@ export const candidateProfileSchema = z.object({
 export type CandidateProfileInput = z.infer<typeof candidateProfileSchema>;
 
 export const recruiterProfileSchema = z.object({
-  companyName: z.string().min(2, "Company name is required").max(120),
+  companyName: z.string().min(2, "Company name is required").max(150),
   companyWebsite: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   companyLogoUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
-  designation: z.string().max(120).optional().or(z.literal("")),
+  designation: z
+    .string()
+    .max(100)
+    .optional()
+    .or(z.literal(""))
+    .refine((v) => !v || v.trim().length >= 2, { message: "Designation must be at least 2 characters" }),
 });
 export type RecruiterProfileInput = z.infer<typeof recruiterProfileSchema>;
 

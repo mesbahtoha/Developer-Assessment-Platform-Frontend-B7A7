@@ -290,15 +290,10 @@ function InviteCandidate({ assessmentId }: { assessmentId: string }) {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm<InviteInput>({
     resolver: zodResolver(inviteSchema),
-    defaultValues: { assessmentId },
-  });
-
-  useState(() => {
-    setValue("assessmentId", assessmentId);
+    defaultValues: { assessmentId, candidateEmail: "" },
   });
 
   const onSubmit = async (v: InviteInput) => {

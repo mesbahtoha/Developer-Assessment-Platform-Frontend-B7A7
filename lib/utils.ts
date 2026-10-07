@@ -56,3 +56,18 @@ export function truncate(text: string, max = 120): string {
   if (text.length <= max) return text;
   return `${text.slice(0, max).trim()}…`;
 }
+
+/**
+ * Drops empty-string / null / undefined values so PATCH bodies satisfy the
+ * backend's `nullish` + `min()` Zod rules ("" would fail min length checks).
+ */
+export function stripEmpty<T extends Record<string, unknown>>(obj: T): Partial<T> {
+  const out: Record<string, unknown> = {};
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v === undefined || v === null) return;
+    if (typeof v === "string" && v.trim() === "") return;
+    if (typeof v === "number" && Number.isNaN(v)) return;
+    out[k] = v;
+  });
+  return out as Partial<T>;
+}

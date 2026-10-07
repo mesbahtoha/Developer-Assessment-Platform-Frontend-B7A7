@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { PageHeader } from "@/components/shared/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAccount, useChangePassword, useMyProfile, useUpdateAccount, useUpdateProfile } from "@/lib/queries";
+import { stripEmpty } from "@/lib/utils";
 import { changePasswordSchema, recruiterProfileSchema, updateAccountSchema, type ChangePasswordInput, type RecruiterProfileInput, type UpdateAccountInput } from "@/lib/validations";
 import type { RecruiterProfile } from "@/lib/types";
 
@@ -135,7 +136,7 @@ export default function RecruiterProfilePage() {
           <form
             onSubmit={companyForm.handleSubmit(async (v) => {
               try {
-                await updateProfile.mutateAsync(v);
+                await updateProfile.mutateAsync(stripEmpty({ ...v }));
                 toast.success("Company profile updated.");
               } catch (e) {
                 toast.error(e instanceof Error ? e.message : "Update failed");

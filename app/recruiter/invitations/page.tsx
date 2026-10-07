@@ -81,6 +81,11 @@ function ListInner({ refreshKey }: { refreshKey: number }) {
   });
   const invites = data?.invitations ?? [];
 
+  useEffect(() => {
+    if (refreshKey > 0) refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshKey]);
+
   return (
     <div className="mt-4">
       <div className="flex gap-3">
@@ -94,7 +99,7 @@ function ListInner({ refreshKey }: { refreshKey: number }) {
             <SelectItem value="EXPIRED">Expired</SelectItem>
           </SelectContent>
         </Select>
-        <Button variant="outline" size="sm" onClick={() => refetch()} className="hidden">x{refreshKey}</Button>
+        <Button variant="outline" size="sm" onClick={() => refetch()}>Refresh</Button>
       </div>
       {isLoading ? (
         <div className="mt-4 space-y-3">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-20 w-full" />)}</div>
@@ -126,6 +131,7 @@ function ListInner({ refreshKey }: { refreshKey: number }) {
 }
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function RecruiterInvitationsPage() {
   const [refreshKey, setRefreshKey] = useState(0);

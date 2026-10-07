@@ -14,6 +14,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/hooks/use-auth";
 import { useAccount, useChangePassword, useMyProfile, useUpdateAccount, useUpdateProfile } from "@/lib/queries";
+import { stripEmpty } from "@/lib/utils";
 import { candidateProfileSchema, changePasswordSchema, updateAccountSchema, type CandidateProfileInput, type ChangePasswordInput, type UpdateAccountInput } from "@/lib/validations";
 import type { CandidateProfile } from "@/lib/types";
 
@@ -77,11 +78,14 @@ export default function CandidateProfilePage() {
 
   const onProfile = async (v: CandidateProfileInput) => {
     try {
-      await updateProfile.mutateAsync({
-        ...v,
-        skills: v.skills ? v.skills.split(",").map((s) => s.trim()).filter(Boolean) : [],
-        experienceYears: v.experienceYears === undefined || Number.isNaN(v.experienceYears) ? undefined : v.experienceYears,
-      });
+      const skills = v.skills ? v.skills.split(",").map((s) => s.trim()).filter(Boolean).slice(0, 30) : [];
+      await updateProfile.mutateAsync(
+        stripEmpty({
+          ...v,
+          skills: skills.length > 0 ? skills : undefined,
+          experienceYears: v.experienceYears === undefined || Number.isNaN(v.experienceYears) ? undefined : v.experienceYears,
+        })
+      );
       toast.success("Developer profile updated.");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Update failed");
