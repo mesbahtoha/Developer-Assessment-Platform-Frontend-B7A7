@@ -33,7 +33,7 @@ export function ExamRunner({ attemptId }: { attemptId: string }) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const problems = useMemo(() => (assessmentData as any)?.assessment?.problems ?? [], [assessmentData]);
-  const submissions: Array<{ problemId: string; answer?: string | null; status: string; pointsAwarded?: number | null }> =
+  const submissions: Array<{ problemId: string; answer?: string | null; language?: string | null; status: string; pointsAwarded?: number | null }> =
     attempt?.submissions ?? [];
   const submittedByProblem = useMemo(() => {
     const map: Record<string, (typeof submissions)[number]> = {};

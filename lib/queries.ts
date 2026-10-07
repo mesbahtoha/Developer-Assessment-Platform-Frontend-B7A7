@@ -21,7 +21,7 @@ import type {
   Submission,
 } from "./types";
 
-export function qs(params: Record<string, string | number | undefined | null>): string {
+export function qs(params: object): string {
   const sp = new URLSearchParams();
   Object.entries(params).forEach(([k, v]) => {
     if (v !== undefined && v !== null && v !== "") sp.set(k, String(v));
