@@ -57,7 +57,7 @@ function SendForm({ onSent }: { onSent: () => void }) {
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="candidateEmail">Candidate email</Label>
-            <Input id="candidateEmail" type="email" placeholder="candidate@example.com" {...register("candidateEmail")} />
+            <Input id="candidateEmail" type="email" placeholder="Enter candidate email" {...register("candidateEmail")} />
             {errors.candidateEmail ? <p className="text-xs text-destructive">{errors.candidateEmail.message}</p> : null}
           </div>
           <div className="flex items-end">

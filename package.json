@@ -2,7 +2,7 @@
   "name": "developer-assessment-platform-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "Developer Assessment & Coding Platform — Frontend (Next.js App Router)",
+  "description": "Developer Assessment and Coding Platform, Frontend built with Next.js App Router",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,6 +24,7 @@
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.447.0",
     "next": "14.2.18",
+    "next-themes": "^0.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",

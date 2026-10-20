@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export const metadata: Metadata = {
   title: "Payment cancelled",
-  description: "Your Stripe checkout was cancelled — no charge was made.",
+  description: "Your Stripe checkout was cancelled, no charge was made.",
 };
 
 function CancelCard() {
@@ -18,7 +18,7 @@ function CancelCard() {
           Payment cancelled
         </CardTitle>
         <CardDescription>
-          You left Stripe Checkout before paying. No charge was made and the payment stays PENDING —
+          You left Stripe Checkout before paying. No charge was made and the payment stays PENDING,
           create a fresh session any time.
         </CardDescription>
       </CardHeader>

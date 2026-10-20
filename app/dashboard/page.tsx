@@ -33,9 +33,9 @@ export default function CandidateOverviewPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Attempts" value={attemptsData?.meta.total ?? "—"} hint="Timed attempts started" icon={Clock} />
+        <StatCard title="Attempts" value={attemptsData?.meta.total ?? 0} hint="Timed attempts started" icon={Clock} />
         <StatCard title="Pending invites" value={invitesData?.meta.total ?? invites.length} hint="Awaiting your response" icon={Mail} />
-        <StatCard title="Pass rate" value={summary ? `${Math.round((summary.passed / Math.max(1, summary.total)) * 100)}%` : "—"} hint={`${summary?.passed ?? 0} passed of ${summary?.total ?? 0}`} icon={Award} />
+        <StatCard title="Pass rate" value={summary ? `${Math.round((summary.passed / Math.max(1, summary.total)) * 100)}%` : "N/A"} hint={`${summary?.passed ?? 0} passed of ${summary?.total ?? 0}`} icon={Award} />
         <StatCard title="Payments" value={paymentsData?.meta.total ?? payments.length} hint="Stripe transactions" icon={CreditCard} />
       </div>
 
@@ -47,7 +47,7 @@ export default function CandidateOverviewPage() {
           </CardHeader>
           <CardContent>
             {invites.length === 0 ? (
-              <EmptyState title="No pending invitations" hint="Recruiters invite you by email — accepted invites unlock timed attempts." />
+              <EmptyState title="No pending invitations" hint="Recruiters invite you by email, accepted invites unlock timed attempts." />
             ) : (
               <ul className="space-y-3">
                 {invites.slice(0, 3).map((inv) => (

@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
   title: "Assessments",
-  description: "Browse published developer assessments — free and paid tiers.",
+  description: "Browse published developer assessments, free and paid tiers.",
 };
 
 export default function AssessmentsPage() {

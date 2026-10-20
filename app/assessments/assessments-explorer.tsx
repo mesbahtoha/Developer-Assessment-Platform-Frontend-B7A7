@@ -34,11 +34,10 @@ function ExplorerInner() {
         <FileText className="mx-auto h-10 w-10 text-muted-foreground" aria-hidden />
         <h2 className="mt-3 text-lg font-semibold">Log in to browse the live catalog</h2>
         <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">
-          The assessment list is role-scoped by the API and requires authentication. Use a one-click
-          demo account to explore instantly.
+          The assessment list is role based and requires authentication. Log in or create an account to explore.
         </p>
         <div className="mt-4 flex justify-center gap-2">
-          <Button asChild><Link href="/login">Log in / demo access</Link></Button>
+          <Button asChild><Link href="/login">Log in</Link></Button>
           <Button variant="outline" asChild><Link href="/pricing">See pricing</Link></Button>
         </div>
       </div>

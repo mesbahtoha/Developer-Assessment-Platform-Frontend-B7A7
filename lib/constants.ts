@@ -2,7 +2,7 @@ export const SITE = {
   name: "AssessDev",
   tagline: "Hire developers with confidence",
   description:
-    "AssessDev is a developer assessment platform where recruiters build proctored-style coding assessments, invite candidates, run timed attempts, and evaluate results — with Stripe-powered paid assessments.",
+    "AssessDev is a developer assessment platform where recruiters build structured coding assessments, invite candidates, run timed attempts and evaluate results. Paid tiers use Stripe checkout.",
 };
 
 export const PUBLIC_NAV = [

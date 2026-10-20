@@ -25,7 +25,7 @@ export default function AboutPage() {
       <p className="mt-4 max-w-3xl text-muted-foreground">
         AssessDev lets companies evaluate developer candidates at scale. Recruiters build assessments
         from a problem bank, invite candidates with unique tokens, run timed attempts with server-side
-        deadlines, and evaluate results — with real Stripe payments for paid assessments. Every critical
+        deadlines, and evaluate results, with real Stripe payments for paid assessments. Every critical
         action is captured in audit logs and hot reads are served from Redis.
       </p>
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
           <CardContent>
             <p className="text-sm text-muted-foreground">
               Every response uses a shared envelope with success flags, human messages, paginated meta
-              objects and field-level Zod error arrays — mirrored by frontend validation.
+              objects and field-level Zod error arrays, mirrored by frontend validation.
             </p>
           </CardContent>
         </Card>

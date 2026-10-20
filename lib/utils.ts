@@ -13,9 +13,9 @@ export function formatCents(cents: number, currency = "usd"): string {
 }
 
 export function formatDateTime(iso: string | Date | null | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "N/A";
   const d = typeof iso === "string" ? new Date(iso) : iso;
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "N/A";
   return new Intl.DateTimeFormat("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -23,14 +23,14 @@ export function formatDateTime(iso: string | Date | null | undefined): string {
 }
 
 export function formatDate(iso: string | Date | null | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "N/A";
   const d = typeof iso === "string" ? new Date(iso) : iso;
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "N/A";
   return new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(d);
 }
 
 export function timeLeft(deadlineIso: string | Date | null | undefined): string {
-  if (!deadlineIso) return "—";
+  if (!deadlineIso) return "N/A";
   const deadline = typeof deadlineIso === "string" ? new Date(deadlineIso) : deadlineIso;
   const ms = deadline.getTime() - Date.now();
   if (ms <= 0) return "Expired";

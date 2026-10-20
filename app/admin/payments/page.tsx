@@ -117,7 +117,7 @@ function ListInner() {
                       {p.status === "PAID" ? (
                         <RefundDialog paymentId={p.id} amount={p.amount} currency={p.currency} onDone={() => refetch()} />
                       ) : (
-                        <span className="text-xs text-muted-foreground">—</span>
+                        <span className="text-xs text-muted-foreground">N/A</span>
                       )}
                     </TableCell>
                   </TableRow>

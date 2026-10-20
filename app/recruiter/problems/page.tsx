@@ -133,7 +133,7 @@ function ProblemDialog({ problem, onDone }: { problem?: Problem; onDone: () => v
             {errors.correctAnswer ? <p className="text-xs text-destructive">{errors.correctAnswer.message}</p> : null}
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="points">Points (1–100)</Label>
+            <Label htmlFor="points">Points (1 to 100)</Label>
             <Input id="points" type="number" min={1} max={100} {...register("points")} />
           </div>
           <div className="space-y-1.5 sm:col-span-2">

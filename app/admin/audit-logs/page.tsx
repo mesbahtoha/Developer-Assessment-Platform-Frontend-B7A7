@@ -56,7 +56,7 @@ function ListInner() {
                     <TableCell className="font-mono text-xs font-medium">{l.action}</TableCell>
                     <TableCell className="text-muted-foreground">{l.actor ? `${l.actor.name} (${l.actor.email})` : "system"}</TableCell>
                     <TableCell className="font-mono text-xs text-muted-foreground">
-                      {l.targetType ?? "—"}{l.targetId ? ` · ${l.targetId.slice(0, 8)}…` : ""}
+                      {l.targetType ?? "N/A"}{l.targetId ? ` · ${l.targetId.slice(0, 8)}…` : ""}
                     </TableCell>
                     <TableCell className="text-muted-foreground">{formatDateTime(l.createdAt)}</TableCell>
                   </TableRow>
@@ -82,7 +82,7 @@ function ListInner() {
 export default function AdminAuditLogsPage() {
   return (
     <div>
-      <PageHeader title="Audit logs" description="Who did what to what — the platform's tamper-evident trail." />
+      <PageHeader title="Audit logs" description="Who did what to what, the platform's tamper-evident trail." />
       <Suspense fallback={<Skeleton className="h-64 w-full" />}>
         <ListInner />
       </Suspense>

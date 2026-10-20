@@ -30,10 +30,10 @@ export default function RecruiterOverviewPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Assessments" value={assessmentsData?.meta.total ?? "—"} hint="Across all statuses" icon={FileText} />
-        <StatCard title="Problems" value={problemsData?.meta.total ?? "—"} hint="In your bank" icon={Database} />
+        <StatCard title="Assessments" value={assessmentsData?.meta.total ?? 0} hint="Across all statuses" icon={FileText} />
+        <StatCard title="Problems" value={problemsData?.meta.total ?? 0} hint="In your bank" icon={Database} />
         <StatCard title="Pending reviews" value={pendingData?.meta.total ?? pending.length} hint="CODE submissions waiting" icon={CheckSquare} />
-        <StatCard title="Invitations sent" value={invitesData?.meta.total ?? "—"} hint="To candidates" icon={Mail} />
+        <StatCard title="Invitations sent" value={invitesData?.meta.total ?? 0} hint="To candidates" icon={Mail} />
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">

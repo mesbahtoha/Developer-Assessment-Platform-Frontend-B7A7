@@ -15,7 +15,7 @@ const FAQS = [
   { q: "Is this real money?", a: "No. The platform runs in Stripe test mode. Use the card 4242 4242 4242 4242 with any future expiry and CVC. No real charges occur." },
   { q: "What happens if I cancel?", a: "Cancelling on Stripe returns you to /payment/cancel. The payment stays PENDING and you can create a fresh session any time." },
   { q: "Can I get a refund?", a: "Admins can issue real Stripe refunds from the payment register (POST /payments/:id/refund). The webhook then marks the payment REFUNDED." },
-  { q: "Who sets the price?", a: "Recruiters set the price in cents when creating an assessment. The server re-reads the price from the database at checkout — client-sent amounts are ignored or verified." },
+  { q: "Who sets the price?", a: "Recruiters set the price in cents when creating an assessment. The server re-reads the price from the database at checkout, client-sent amounts are ignored or verified." },
 ];
 
 export default function PricingPage() {

@@ -26,7 +26,7 @@ export default function ServicesPage() {
         Everything you need to assess developers fairly.
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        Six platform services cover the full hiring loop — each backed by a real API with validation,
+        Six platform services cover the full hiring loop, each backed by a real API with validation,
         role checks and caching.
       </p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

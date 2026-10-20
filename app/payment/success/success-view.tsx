@@ -43,7 +43,7 @@ export function SuccessView() {
         ) : isError || !data?.payment ? (
           <>
             <p className="flex items-center justify-center gap-2 text-sm text-destructive">
-              <XCircle className="h-4 w-4" aria-hidden /> Verification failed — the webhook may still be processing.
+              <XCircle className="h-4 w-4" aria-hidden /> Verification failed, the webhook may still be processing.
             </p>
             <div className="flex justify-center gap-2">
               <Button variant="outline" onClick={() => router.refresh()}>Retry verification</Button>
@@ -59,7 +59,7 @@ export function SuccessView() {
             <p className="text-sm text-muted-foreground">
               {data.payment.status === "PAID"
                 ? "Confirmed PAID. You can now start your timed attempt."
-                : "The payment is still processing — check back in a moment."}
+                : "The payment is still processing, check back in a moment."}
             </p>
             <div className="flex justify-center gap-2">
               <Button asChild>

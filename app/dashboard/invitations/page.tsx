@@ -28,7 +28,7 @@ function ListInner() {
   const act = async (id: string, action: "accept" | "reject") => {
     try {
       await respond.mutateAsync({ id, action });
-      toast.success(action === "accept" ? "Invitation accepted — you can now start the attempt." : "Invitation declined.");
+      toast.success(action === "accept" ? "Invitation accepted, you can now start the attempt." : "Invitation declined.");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Action failed");
     }

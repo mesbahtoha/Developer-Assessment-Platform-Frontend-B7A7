@@ -95,7 +95,7 @@ export default function CandidateProfilePage() {
   const onPassword = async (v: ChangePasswordInput) => {
     try {
       await changePassword.mutateAsync(v);
-      toast.success("Password changed — all sessions were revoked except this one. Please log in again if asked.");
+      toast.success("Password changed, all sessions were revoked except this one. Please log in again if asked.");
       passwordForm.reset();
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Password change failed");

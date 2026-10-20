@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
   title: "Log in",
-  description: "Log in to AssessDev — or use one-click demo accounts for each role.",
+  description: "Log in to AssessDev to access your candidate, recruiter or admin dashboard.",
 };
 
 export default function LoginPage() {

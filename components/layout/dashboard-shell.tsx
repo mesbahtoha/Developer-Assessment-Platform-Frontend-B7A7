@@ -60,12 +60,12 @@ export function DashboardShell({
     <div className="container flex flex-col gap-6 py-6 lg:flex-row">
       <aside className="w-full shrink-0 lg:w-64">
         <div className="lg:sticky lg:top-20">
-          <div className="mb-4 hidden items-center gap-3 rounded-xl border bg-card p-4 lg:flex">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+          <div className="mb-4 hidden items-center gap-3 rounded-xl border bg-card p-4 shadow-[0_4px_20px_-2px_rgba(79,70,229,0.1)] lg:flex">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 text-sm font-bold text-white">
               {user ? initials(user.name) : "?"}
             </span>
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold">{user?.name ?? "Loading…"}</p>
+              <p className="truncate text-sm font-semibold">{user?.name ?? "Loading"}</p>
               <p className="truncate text-xs text-muted-foreground">
                 {user ? `${user.role}` : ""}
               </p>
@@ -83,8 +83,8 @@ export function DashboardShell({
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-                    active && "bg-accent text-accent-foreground"
+                    "flex min-h-[44px] shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground",
+                    active && "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-sm hover:text-white"
                   )}
                 >
                   <Icon className="h-4 w-4" aria-hidden />
@@ -92,7 +92,7 @@ export function DashboardShell({
                 </Link>
               );
             })}
-            <Button variant="ghost" className="justify-start text-muted-foreground" onClick={handleLogout}>
+            <Button variant="ghost" className="min-h-[44px] justify-start text-muted-foreground" onClick={handleLogout}>
               <LogOut className="h-4 w-4" aria-hidden />
               Log out
             </Button>

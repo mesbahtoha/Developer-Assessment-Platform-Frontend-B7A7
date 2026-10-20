@@ -48,7 +48,7 @@ export default function NewAssessmentWizard() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const id = (res as any)?.assessment?.id as string;
       setAssessmentId(id);
-      toast.success("DRAFT created — now attach problems.");
+      toast.success("DRAFT created, now attach problems.");
       setStep(1);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not create assessment");
@@ -58,7 +58,7 @@ export default function NewAssessmentWizard() {
   const attachSelected = async () => {
     if (!assessmentId) return;
     if (selected.length === 0) {
-      toast.error("Select at least one problem — publishing requires ≥1.");
+      toast.error("Select at least one problem, publishing requires ≥1.");
       return;
     }
     try {
@@ -88,7 +88,7 @@ export default function NewAssessmentWizard() {
       {step === 0 ? (
         <Card className="max-w-2xl">
           <CardHeader>
-            <CardTitle>Step 1 — Basics</CardTitle>
+            <CardTitle>Step 1, Basics</CardTitle>
             <CardDescription>Creates the assessment in DRAFT. Price is in cents (0 = free).</CardDescription>
           </CardHeader>
           <CardContent>
@@ -132,12 +132,12 @@ export default function NewAssessmentWizard() {
       {step === 1 ? (
         <Card>
           <CardHeader>
-            <CardTitle>Step 2 — Attach problems</CardTitle>
+            <CardTitle>Step 2, Attach problems</CardTitle>
             <CardDescription>Select from your problem bank. Publishing requires at least one.</CardDescription>
           </CardHeader>
           <CardContent>
             {problems.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No problems in the bank yet — create some on the Problem Bank page first.</p>
+              <p className="text-sm text-muted-foreground">No problems in the bank yet, create some on the Problem Bank page first.</p>
             ) : (
               <ul className="grid gap-2 sm:grid-cols-2">
                 {problems.map((p) => {
@@ -185,7 +185,7 @@ function PublishStep({ assessmentId, summary, onDone }: { assessmentId: string; 
     setError(null);
     try {
       await publish.mutateAsync({ status: "PUBLISHED" });
-      toast.success("Assessment published — candidates can now be invited.");
+      toast.success("Assessment published, candidates can now be invited.");
       onDone(assessmentId);
     } catch (e) {
       const msg = e instanceof ApiError ? e.message : e instanceof Error ? e.message : "Publish failed";
@@ -197,7 +197,7 @@ function PublishStep({ assessmentId, summary, onDone }: { assessmentId: string; 
   return (
     <Card className="max-w-2xl">
       <CardHeader>
-        <CardTitle>Step 3 — Publish</CardTitle>
+        <CardTitle>Step 3, Publish</CardTitle>
         <CardDescription>{summary}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">

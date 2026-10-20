@@ -50,13 +50,6 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
   },
 }));
 
-/** Demo accounts seeded by the backend (`prisma db seed`). */
-export const DEMO_ACCOUNTS: Array<{ role: Role; email: string; password: string; label: string }> = [
-  { role: "ADMIN", email: "admin@assessment.com", password: "Admin@1234", label: "Admin" },
-  { role: "RECRUITER", email: "recruiter@assessment.com", password: "Recruiter@1234", label: "Recruiter" },
-  { role: "CANDIDATE", email: "candidate@assessment.com", password: "Candidate@1234", label: "Candidate" },
-];
-
 export function dashboardPathFor(role: Role): string {
   if (role === "ADMIN") return "/admin";
   if (role === "RECRUITER") return "/recruiter";

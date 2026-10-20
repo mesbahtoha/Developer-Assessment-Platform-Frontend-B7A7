@@ -38,55 +38,57 @@ export function RegisterForm() {
         auth: false,
       });
       useAuthStore.getState().setSession(payload);
-      toast.success("Account created — welcome aboard!");
+      toast.success(`Account created. Welcome, ${payload.user.name}`);
       router.push(dashboardPathFor(payload.user.role));
       router.refresh();
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Registration failed");
+      toast.error(e instanceof Error ? e.message : "Registration failed. Try a different email.");
     }
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="card-hover w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Create your account</CardTitle>
-        <CardDescription>Candidates take assessments · Recruiters create them</CardDescription>
+        <CardTitle className="text-2xl font-extrabold tracking-tight">
+          Create your <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">account</span>
+        </CardTitle>
+        <CardDescription>Join as a candidate or a recruiter</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div className="space-y-1.5">
             <Label htmlFor="name">Full name</Label>
-            <Input id="name" placeholder="Jane Smith" {...register("name")} />
-            {errors.name ? <p className="text-xs text-destructive">{errors.name.message}</p> : null}
+            <Input id="name" autoComplete="name" placeholder="Enter your full name" {...register("name")} />
+            {errors.name ? <p className="text-xs text-destructive" role="alert">{errors.name.message}</p> : null}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="jane@example.com" {...register("email")} />
-            {errors.email ? <p className="text-xs text-destructive">{errors.email.message}</p> : null}
+            <Input id="email" type="email" autoComplete="email" placeholder="Enter your email" {...register("email")} />
+            {errors.email ? <p className="text-xs text-destructive" role="alert">{errors.email.message}</p> : null}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" placeholder="Min 8 chars, letter + number" {...register("password")} />
-            {errors.password ? <p className="text-xs text-destructive">{errors.password.message}</p> : null}
+            <Input id="password" type="password" autoComplete="new-password" placeholder="Minimum 8 characters with a letter and a number" {...register("password")} />
+            {errors.password ? <p className="text-xs text-destructive" role="alert">{errors.password.message}</p> : null}
           </div>
           <div className="space-y-1.5">
-            <Label>I am a…</Label>
+            <Label htmlFor="role">I am joining as</Label>
             <Select value={role} onValueChange={(v) => setValue("role", v as "CANDIDATE" | "RECRUITER")}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger id="role"><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="CANDIDATE">Candidate — take assessments</SelectItem>
-                <SelectItem value="RECRUITER">Recruiter — create assessments</SelectItem>
+                <SelectItem value="CANDIDATE">Candidate: take assessments</SelectItem>
+                <SelectItem value="RECRUITER">Recruiter: create assessments</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" disabled={isSubmitting} className="w-full">
+          <Button type="submit" disabled={isSubmitting} className="min-h-[44px] w-full">
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : null}
-            {isSubmitting ? "Creating…" : "Create account"}
+            {isSubmitting ? "Creating account" : "Create account"}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-primary hover:underline">Log in</Link>
+          <Link href="/login" className="font-semibold text-indigo-600 hover:underline dark:text-indigo-300">Log in</Link>
         </p>
       </CardContent>
     </Card>

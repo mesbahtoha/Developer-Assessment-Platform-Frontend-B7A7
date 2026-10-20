@@ -52,7 +52,7 @@ export function ExamRunner({ attemptId }: { attemptId: string }) {
   useEffect(() => {
     if (!attempt?.deadlineAt || !isActive) return;
     if (new Date(attempt.deadlineAt).getTime() <= Date.now()) {
-      toast.error("Time is up — finalizing your attempt.");
+      toast.error("Time is up, finalizing your attempt.");
       refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,9 +74,9 @@ export function ExamRunner({ attemptId }: { attemptId: string }) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const saved = (res as any)?.submission;
       if (saved?.status === "EVALUATED") {
-        toast.success(saved.pointsAwarded > 0 ? "Correct — answer saved!" : "Saved — that MCQ was incorrect.");
+        toast.success(saved.pointsAwarded > 0 ? "Correct, answer saved!" : "Saved, that MCQ was incorrect.");
       } else {
-        toast.success("Answer saved — queued for manual review.");
+        toast.success("Answer saved, queued for manual review.");
       }
       refetch();
     } catch (e) {
@@ -89,7 +89,7 @@ export function ExamRunner({ attemptId }: { attemptId: string }) {
   const finalize = async () => {
     try {
       await submitMutation.mutateAsync(attemptId);
-      toast.success("Attempt submitted — results computed.");
+      toast.success("Attempt submitted, results computed.");
       refetch();
       router.refresh();
     } catch (e) {
@@ -149,7 +149,7 @@ export function ExamRunner({ attemptId }: { attemptId: string }) {
             <span>Score <strong>{attempt.result.score}/{attempt.result.totalPoints}</strong></span>
             <span><strong>{attempt.result.percentage}%</strong></span>
             <StatusBadge status={attempt.result.isPassed ? "ACCEPTED" : "FAILED"} />
-            <span className="text-muted-foreground">{attempt.result.isPassed ? "Passed" : "Not passed"} — {attempt.status}</span>
+            <span className="text-muted-foreground">{attempt.result.isPassed ? "Passed" : "Not passed"}, {attempt.status}</span>
           </CardContent>
         </Card>
       ) : null}

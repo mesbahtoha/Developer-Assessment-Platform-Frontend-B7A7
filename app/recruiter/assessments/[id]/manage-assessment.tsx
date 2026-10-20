@@ -313,8 +313,8 @@ function InviteCandidate({ assessmentId }: { assessmentId: string }) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <input type="hidden" {...register("assessmentId")} />
           <div className="space-y-1.5">
-            <Label htmlFor="candidateEmail">Candidate email (must be a CANDIDATE account)</Label>
-            <Input id="candidateEmail" type="email" placeholder="candidate@example.com" {...register("candidateEmail")} />
+            <Label htmlFor="candidateEmail">Candidate email (must be a registered candidate)</Label>
+            <Input id="candidateEmail" type="email" placeholder="Enter candidate email" {...register("candidateEmail")} />
             {errors.candidateEmail ? <p className="text-xs text-destructive">{errors.candidateEmail.message}</p> : null}
           </div>
           <Button type="submit" disabled={send.isPending}>

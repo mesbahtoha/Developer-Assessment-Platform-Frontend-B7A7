@@ -55,7 +55,7 @@ function EvaluateDialog({ submissionId, maxScore, onDone }: { submissionId: stri
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Manual evaluation</DialogTitle>
-          <DialogDescription>Score 0–{maxScore} with optional feedback for the candidate.</DialogDescription>
+          <DialogDescription>Score 0 to {maxScore} with optional feedback for the candidate.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div className="space-y-1.5">

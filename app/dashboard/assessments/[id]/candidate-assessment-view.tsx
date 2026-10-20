@@ -57,7 +57,7 @@ export function CandidateAssessmentView({ id }: { id: string }) {
     setPaying(true);
     try {
       const res = await checkoutMutation.mutateAsync({ assessmentId: id });
-      toast.success(res.reused ? "Resuming your checkout session…" : "Checkout session created — redirecting to Stripe…");
+      toast.success(res.reused ? "Resuming your checkout session…" : "Checkout session created, redirecting to Stripe…");
       window.location.href = res.url;
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not create checkout session");
@@ -68,11 +68,11 @@ export function CandidateAssessmentView({ id }: { id: string }) {
   const handleStart = async () => {
     try {
       const res = await startMutation.mutateAsync(id);
-      toast.success("Attempt started — good luck!");
+      toast.success("Attempt started, good luck!");
       router.push(`/dashboard/attempts/${res.attempt.id}`);
     } catch (e) {
       if (e instanceof ApiError && e.status === 402) {
-        toast.error("Payment required — complete Stripe checkout first.");
+        toast.error("Payment required, complete Stripe checkout first.");
         return;
       }
       if (e instanceof ApiError && e.status === 409) {
@@ -100,9 +100,9 @@ export function CandidateAssessmentView({ id }: { id: string }) {
           <CardHeader><CardTitle>What to expect</CardTitle></CardHeader>
           <CardContent className="space-y-2 text-sm">
             <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-muted-foreground" aria-hidden />{a.durationMin} minutes, timed server-side. Late submissions are rejected.</p>
-            <p>• {problems.length} problem{problems.length === 1 ? "" : "s"} — MCQ answers are auto-graded instantly, CODE answers go to manual review.</p>
+            <p>• {problems.length} problem{problems.length === 1 ? "" : "s"}, MCQ answers are auto-graded instantly, CODE answers go to manual review.</p>
             <p>• Pass mark {a.passScorePercent}%. One attempt per candidate.</p>
-            <p>• Price: <strong>{isPaid ? formatCents(a.price, a.currency) : "Free"}</strong>{isPaid ? " — Stripe Checkout with test cards." : ""}</p>
+            <p>• Price: <strong>{isPaid ? formatCents(a.price, a.currency) : "Free"}</strong>{isPaid ? ", Stripe Checkout with test cards." : ""}</p>
             {problems.length > 0 ? (
               <ul className="pt-2 space-y-2">
                 {problems.map((l, i) => (
