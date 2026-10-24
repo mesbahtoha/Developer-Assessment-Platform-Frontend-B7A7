@@ -87,15 +87,18 @@ error handling, and URL synced filters for bookmarkable views.
 cp .env.example .env.local   # then set your values
 ```
 
-| Variable | Required | Default |
+| Variable | Required | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | No | `https://developerassessmentbackend.vercel.app/api/v1` |
-| `NEXT_PUBLIC_SITE_URL` | No | Used by sitemap and robots |
-| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | No | Enables Continue with Google on login |
+| `NEXT_PUBLIC_API_URL` | Recommended | Backend base URL including `/api/v1`. Defaults to the public deployed API if omitted. |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical frontend origin for metadata, `robots.txt` and `sitemap.xml`. Auto-detected on Vercel when omitted. |
+| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | Optional | Enables the "Continue with Google" button on `/login`. |
 
+> `NEXT_PUBLIC_*` values are embedded at build time. Set them in Vercel before the first
+> deploy, and redeploy whenever they change.
+>
 > The backend `CLIENT_URL` allow list must include your frontend origin, otherwise CORS will
 > reject API calls. The backend Stripe success and cancel URLs must point at
-> `<frontend>/payment/success` and `<frontend>/payment/cancel`.
+> `<frontend>/payment/success` and `<frontend>/payment/cancelled`.
 
 ## Run locally
 
@@ -113,14 +116,40 @@ npm start          # serve production
 2. Click **Pay with Stripe** to open Stripe Checkout.
 3. Pay with `4242 4242 4242 4242`, any future expiry, any CVC.
 4. You return to `/payment/success?session_id=...` which verifies through `GET /payments/verify/:sessionId`.
-5. **Start timed attempt** unlocks. Cancel returns to `/payment/cancel`.
+5. **Start timed attempt** unlocks. Cancel returns to `/payment/cancelled`.
 
 ## Deployment (Vercel)
 
-1. Push this folder to a git repo.
-2. Import into Vercel with framework preset **Next.js**.
-3. Set `NEXT_PUBLIC_API_URL` (production backend) and `NEXT_PUBLIC_SITE_URL` (frontend URL).
-4. Deploy with `next build`.
+This repository is a standalone Next.js app at the repository root, so it can be imported
+into Vercel as-is.
+
+1. Push this folder to GitHub (already done).
+2. Vercel -> **Add New -> Project -> Import Git Repository**, pick the frontend repo.
+3. Keep the defaults:
+   - Framework preset: **Next.js**
+   - Root directory: `./`
+   - Build command: `next build` (`npm run build`)
+   - Output directory: `.next` (default)
+   - Install command: `npm install`
+   - Node.js version: **22.x** (pinned through `engines` in `package.json`)
+4. Add environment variables (Production and Preview):
+
+   | Key | Value |
+   |---|---|
+   | `NEXT_PUBLIC_API_URL` | `https://developerassessmentbackend.vercel.app/api/v1` |
+   | `NEXT_PUBLIC_SITE_URL` | your final frontend URL, e.g. `https://your-app.vercel.app` |
+   | `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | only if Google sign in is enabled |
+
+5. Click **Deploy**. The build runs `next build` and the app is served by Vercel.
+6. After the first deploy, copy the production URL and set it in the **backend**
+   environment as part of `CLIENT_URL`, then redeploy the backend so CORS accepts the
+   frontend origin.
+7. If Google sign in is enabled, add the frontend URL to the OAuth client's
+   **Authorized JavaScript origins** and make sure the backend uses the same
+   `GOOGLE_CLIENT_ID`.
+8. For Stripe, confirm the backend's redirect base points at the deployed frontend
+   (`/payment/success`, `/payment/cancelled`) and the Stripe webhook targets the
+   deployed backend.
 
 ## Production notes
 

@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
+import { SITE_URL } from "@/lib/site";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -14,6 +15,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "AssessDev | Developer Assessment Platform",
     template: "%s | AssessDev",
@@ -25,6 +27,7 @@ export const metadata: Metadata = {
     description:
       "Assessments, invitations, timed attempts, evaluation and Stripe payments in one hiring workflow.",
     type: "website",
+    url: SITE_URL,
   },
 };
 
